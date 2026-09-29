@@ -1,16 +1,26 @@
 public class StudentBST {
     private BSTNode root;
+    private int size;
 
     public void clear() {
         root = null;
+        size = 0;
     }
 
     public void insert(Student student) {
+        if (student == null) return;
+        int previousSize = size;
         root = insertRecursive(root, student);
+        if (size == previousSize && root != null) {
+            // Duplicate IDs are ignored by the BST.
+        }
     }
 
     private BSTNode insertRecursive(BSTNode node, Student student) {
-        if (node == null) return new BSTNode(student);
+        if (node == null) {
+            size++;
+            return new BSTNode(student);
+        }
 
         int comparison = student.getStudentId().compareToIgnoreCase(node.data.getStudentId());
 
@@ -21,15 +31,21 @@ public class StudentBST {
     }
 
     public Student search(String id) {
+        if (id == null) return null;
+
         BSTNode current = root;
 
         while (current != null) {
-            int comparison = id.compareToIgnoreCase(current.data.getStudentId());
+            int comparison = id.trim().compareToIgnoreCase(current.data.getStudentId());
             if (comparison == 0) return current.data;
             current = comparison < 0 ? current.left : current.right;
         }
 
         return null;
+    }
+
+    public int size() {
+        return size;
     }
 
     public void displayInOrder() {
@@ -39,6 +55,7 @@ public class StudentBST {
             return;
         }
         inOrder(root);
+        System.out.println("Total BST records: " + size);
     }
 
     private void inOrder(BSTNode node) {
