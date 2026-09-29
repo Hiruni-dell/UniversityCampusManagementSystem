@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class CampusGraph {
-    private final Map<String, LinkedHashSet<String>> adjacencyList = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private final Map<String, LinkedHashSet<String>> adjacencyList =
+            new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     public boolean addLocation(String location) {
         if (location == null || location.trim().isEmpty()) return false;
@@ -28,9 +29,9 @@ public class CampusGraph {
 
         if (fromKey == null || toKey == null || fromKey.equalsIgnoreCase(toKey)) return false;
 
-        adjacencyList.get(fromKey).add(toKey);
-        adjacencyList.get(toKey).add(fromKey);
-        return true;
+        boolean addedFrom = adjacencyList.get(fromKey).add(toKey);
+        boolean addedTo = adjacencyList.get(toKey).add(fromKey);
+        return addedFrom && addedTo;
     }
 
     public boolean removeConnection(String from, String to) {
@@ -42,6 +43,18 @@ public class CampusGraph {
         boolean removed1 = adjacencyList.get(fromKey).removeIf(n -> n.equalsIgnoreCase(toKey));
         boolean removed2 = adjacencyList.get(toKey).removeIf(n -> n.equalsIgnoreCase(fromKey));
         return removed1 || removed2;
+    }
+
+    public int getLocationCount() {
+        return adjacencyList.size();
+    }
+
+    public int getConnectionCount() {
+        int totalDegree = 0;
+        for (Set<String> neighbours : adjacencyList.values()) {
+            totalDegree += neighbours.size();
+        }
+        return totalDegree / 2;
     }
 
     public void displayConnections() {
@@ -59,6 +72,9 @@ public class CampusGraph {
                 System.out.println(String.join(", ", entry.getValue()));
             }
         }
+
+        System.out.println("Locations: " + getLocationCount() +
+                " | Connections: " + getConnectionCount());
     }
 
     public void bfs(String start) {
