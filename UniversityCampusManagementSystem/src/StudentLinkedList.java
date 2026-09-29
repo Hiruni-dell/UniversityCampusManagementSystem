@@ -2,15 +2,20 @@ public class StudentLinkedList {
     private StudentNode head;
 
     public boolean containsId(String id) {
+        if (id == null) return false;
+
         StudentNode current = head;
         while (current != null) {
-            if (current.data.getStudentId().equalsIgnoreCase(id)) return true;
+            if (current.data.getStudentId().equalsIgnoreCase(id.trim())) return true;
             current = current.next;
         }
         return false;
     }
 
     public boolean add(Student student) {
+        if (student == null || student.getStudentId() == null ||
+                student.getStudentId().trim().isEmpty()) return false;
+
         if (containsId(student.getStudentId())) return false;
 
         StudentNode node = new StudentNode(student);
@@ -26,9 +31,11 @@ public class StudentLinkedList {
     }
 
     public Student search(String id) {
+        if (id == null) return null;
+
         StudentNode current = head;
         while (current != null) {
-            if (current.data.getStudentId().equalsIgnoreCase(id)) return current.data;
+            if (current.data.getStudentId().equalsIgnoreCase(id.trim())) return current.data;
             current = current.next;
         }
         return null;
@@ -44,11 +51,13 @@ public class StudentLinkedList {
     }
 
     public Student delete(String id) {
+        if (id == null) return null;
+
         StudentNode current = head;
         StudentNode previous = null;
 
         while (current != null) {
-            if (current.data.getStudentId().equalsIgnoreCase(id)) {
+            if (current.data.getStudentId().equalsIgnoreCase(id.trim())) {
                 if (previous == null) head = current.next;
                 else previous.next = current.next;
                 return current.data;
@@ -91,5 +100,9 @@ public class StudentLinkedList {
             current = current.next;
         }
         return count;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 }
