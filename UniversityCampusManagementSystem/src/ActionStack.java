@@ -5,7 +5,9 @@ public class ActionStack {
     private final List<String> stack = new ArrayList<>();
 
     public void push(String action) {
-        stack.add(action);
+        if (action != null && !action.trim().isEmpty()) {
+            stack.add(action);
+        }
     }
 
     public String pop() {
@@ -13,8 +15,17 @@ public class ActionStack {
         return stack.remove(stack.size() - 1);
     }
 
+    public String peek() {
+        if (isEmpty()) return null;
+        return stack.get(stack.size() - 1);
+    }
+
     public boolean isEmpty() {
         return stack.isEmpty();
+    }
+
+    public int size() {
+        return stack.size();
     }
 
     public void display() {
