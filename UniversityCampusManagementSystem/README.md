@@ -11,7 +11,7 @@ A Java console application demonstrating practical use of linear data structures
 |---|---|---|
 | 23DA2-0043 | E.A. Chamod Maleesha | Linked List and Student Record Management |
 | 23DA2-0439 | Nushrath Ahamed | Stack and Queue |
-| 23DA2-0261 | W.H.D.S. Fernando | BST/AVL and Hashing |
+| 23DA2-0261 | W.H.D.S. Fernando | BST and Hashing |
 | 23DA2-0346 | P.H.Yashodha Amashi | Graph, Campus Connections and BFS/DFS |
 
 ## Individual Contributions
@@ -133,10 +133,10 @@ Use separate meaningful commits, for example:
 
 1. Initial project structure
 2. Add Student class and Linked List
-3. Implement Stack
+3. Implement Stack and recent-action handling
 4. Implement Service Queue
 5. Implement Student BST
-6. Implement Hash Table
+6. Implement Hash Table with separate chaining
 7. Implement Campus Graph
 8. Add BFS and DFS
 9. Integrate main menu
@@ -185,3 +185,35 @@ UniversityCampusManagementSystem/
 │   └── InputValidator.java
 └── README.md
 ```
+
+
+## Current GitHub Submission Evidence
+
+The repository uses separate feature branches and pull requests to document development work. The current main branch contains the integrated implementation.
+
+- Pull Request #1: Linked List student record handling
+- Pull Request #2: Stack action management
+- Pull Request #3: Student BST indexing
+- Pull Request #4: Campus graph operations
+
+All four pull requests were merged into `main`. The repository therefore provides visible GitHub evidence of feature-level development in addition to the final integrated code.
+
+## Final Testing Checklist
+
+Before the practical demonstration, verify these flows in Eclipse:
+
+- Start the application and confirm demo records load.
+- Display all students through the linked list.
+- Add a new student and confirm duplicate IDs are rejected.
+- Update an existing student and display the updated record.
+- Delete a student and confirm the record is removed.
+- Add two service requests and process them to demonstrate FIFO order.
+- Display the recent-action stack to demonstrate LIFO order.
+- Display the BST and confirm Student IDs appear in sorted order.
+- Search an existing and a missing Student ID using hashing.
+- Add/remove a campus location.
+- Add/remove a campus road and confirm duplicate roads are rejected.
+- Display the adjacency list.
+- Run both BFS and DFS from a valid campus location.
+- Try invalid menu choices and invalid marks to demonstrate input validation.
+- Capture screenshots of the running application and GitHub commit/PR history for the submission evidence.
